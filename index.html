@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/normalize.css">
+  <link rel="stylesheet" href="style/style.css">
+
+  <title>Vue_Homework#1</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="homework">
+      <div class="form-wrapper">
+        <form class="form" v-if="formInvitation">
+          <ul class="list">
+            <li class="list-item" v-for="element in valueRequiredInputs">
+              <p>{{element}}</p>
+          </ul>
+        </form>
+        <form class="form" v-else>
+          <ul class="list">
+            <li class="list-item" v-for="requiredInput in requiredInputs">
+              <label class="label">
+                <span class="text">{{requiredInput.label}}</span>
+              </label>
+              <input class="input" type="text" v-model="requiredInput.value" v-on:change="getValueRequiredInputs">
+            </li>
+          </ul>
+
+          <button type="button" class="guests" @click="addNewGuest">Guests+</button>
+          <ul class="list" v-if="guests.length !== 0 ">
+            <li class="list-item" v-for="guest, index in guests">
+              <label class="label">
+                <span class="text" @dblclick="removeGuest(index)">Guest {{index+1}}</span>
+                <input class="input" type="text">
+              </label>
+            </li>
+          </ul>
+          <div v-else> Add Guest</div>
+
+
+          <button class="btn-success" type="button" @click="getInvitation"
+            :disable="isButtonDisabled">{{btnText}}</button>
+        </form>
+
+        <!-- <form class="form-wrapper" v-else="formIsShow">
+          <ul class="list__show">
+            <li class="list__show-item">
+              <p class="list__show-text">Email</p>
+
+            </li>
+            <p class="list__show-text">{{fullForm}}</p>
+            <li class="list__show-item">
+              <p class="list__show-text">Phone</p>
+
+            </li>
+
+            <li class="list__show-item">
+              <p class="list__show-text">FirstName</p>
+
+            </li>
+
+            <li class="list__show-item">
+              <p class="list__show-text">LastName </p>
+
+            </li>
+          </ul>
+        </form> -->
+
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <script src="vue.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
