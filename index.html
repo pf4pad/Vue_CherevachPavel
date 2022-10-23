@@ -16,18 +16,63 @@
     <div class="homework">
       <div class="form-wrapper">
         <form class="form" v-if="formInvitation">
+
           <ul class="list">
-            <li class="list-item" v-for="element in valueRequiredInputs">
-              <p>{{element}}</p>
+            <li class="list-item">
+
+              <label class="label d-flex">
+                <span class="text">Email</span>
+                <span class="text">{{formData.email}}</span>
+              </label>
+            </li>
+            <li class="list-item">
+              <label class="label d-flex">
+                <span class="text">Phone</span>
+                <span class="text">{{formData.phone}}</span>
+              </label>
+            </li>
+            <li class="list-item">
+              <label class="label d-flex">
+                <span class="text">Full Name</span>
+                <span class="text">{{fullName}}</span>
+              </label>
+            </li>
+            <li class="list-item" v-for="guest, index in guests">
+              <label class="label d-flex">
+                <span class="text">Guests{{index+1}} </span>
+                <span class="text">{{guest}}</span>
+              </label>
+
+            </li>
+
           </ul>
         </form>
         <form class="form" v-else>
+
           <ul class="list">
-            <li class="list-item" v-for="requiredInput in requiredInputs">
+            <li class="list-item">
               <label class="label">
-                <span class="text">{{requiredInput.label}}</span>
+                <span class="text">Email</span>
               </label>
-              <input class="input" type="text" v-model="requiredInput.value" v-on:change="getValueRequiredInputs">
+              <input class="input" type="text" v-model="formData.email">
+            </li>
+            <li class="list-item">
+              <label class="label">
+                <span class="text">Phone</span>
+              </label>
+              <input class="input" type="text" v-model="formData.phone">
+            </li>
+            <li class="list-item">
+              <label class="label">
+                <span class="text">First Name</span>
+              </label>
+              <input class="input" type="text" v-model="formData.firstName">
+            </li>
+            <li class="list-item">
+              <label class="label">
+                <span class="text">Last Name</span>
+              </label>
+              <input class="input" type="text" v-model="formData.lastName">
             </li>
           </ul>
 
@@ -36,40 +81,17 @@
             <li class="list-item" v-for="guest, index in guests">
               <label class="label">
                 <span class="text" @dblclick="removeGuest(index)">Guest {{index+1}}</span>
-                <input class="input" type="text">
+                <input class="input" type="text" v-model="guests[index]">
               </label>
             </li>
           </ul>
           <div v-else> Add Guest</div>
 
 
-          <button class="btn-success" type="button" @click="getInvitation"
-            :disable="isButtonDisabled">{{btnText}}</button>
+          <button class="btn-success" type="button" @click="getInvitation" :disabled="!formReady">{{btnText}}</button>
         </form>
 
-        <!-- <form class="form-wrapper" v-else="formIsShow">
-          <ul class="list__show">
-            <li class="list__show-item">
-              <p class="list__show-text">Email</p>
 
-            </li>
-            <p class="list__show-text">{{fullForm}}</p>
-            <li class="list__show-item">
-              <p class="list__show-text">Phone</p>
-
-            </li>
-
-            <li class="list__show-item">
-              <p class="list__show-text">FirstName</p>
-
-            </li>
-
-            <li class="list__show-item">
-              <p class="list__show-text">LastName </p>
-
-            </li>
-          </ul>
-        </form> -->
 
       </div>
     </div>

@@ -162,6 +162,13 @@ header {
   color: #FFFFFF;
 }
 
+.d-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .list__show-item {
   display: flex;
   align-items: center;

@@ -8,52 +8,41 @@
 Vue.createApp({
   data() {
     return {
-      requiredInputs: [
-        {
-          label: 'Email',
-          value: ''
-        },
-        {
-          label: 'Phone',
-          value: ''
-        },
-        {
-          label: 'First name',
-          value: ''
-        },
-        {
-          label: 'Last name',
-          value: ''
-        }
-      ],
-      valueRequiredInputs: [],
+      formData: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: ''
+      },
       guests: [],
       formInvitation: false,
-      isButtonDisabled: true,
       btnText: 'Send'
-
     }
   },
-  computed() {
+  computed: {
+    fullName() {
+      return this.formData.firstName + ' ' + this.formData.lastName
+    },
+    formReady() {
 
+      return Object.values(this.formData).every(item => item.length > 0)
+    },
 
   },
   methods: {
-    getValueRequiredInputs(e) {
-      this.valueRequiredInputs.push(e.target.value)
-      this.isButtonDisabled = !this.valueRequiredInputs.every(elem => { elem.length > 0 })
 
-      console.log(this.valueRequiredInputs.value)
-    },
 
     addNewGuest() {
-      this.guests.push(this.guest)
+      console.log(this.guests);
+      this.guests.push('')
     },
     removeGuest(index) {
       this.guests.splice(index, 1)
     },
     getInvitation() {
+      console.log(this.guests);
       this.formInvitation = true
+      this.guests = this.guests.filter(item => item.length > 0)
     },
 
 
