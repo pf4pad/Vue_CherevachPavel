@@ -16,36 +16,21 @@
   <div class="container">
     <div class="homework2">
       <ul class="nav nav-pills">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">All</a>
+        <li class="nav-item" v-for="tab in tabs">
+          <a class="nav-link" href="#" @click="getElements">{{tab}}</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Trending</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Featured</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Workout</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Most Played</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">New Releases</a>
-        </li>
+
       </ul>
       <ul class="d-flex">
-        <li v-for="card in content">
+        <li v-for="card in content" key="card.id">
           <div class="card" style="width: 15rem;">
-            <p class="card-text">Some
-              content.
+            <p class="card-text" v-for="item in card.category">{{item}}
             </p>
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some
-                content.
+              <h5 class="card-title">{{card.title}}</h5>
+              <p class="card-text">{{card.artist}}
+
               </p>
 
             </div>

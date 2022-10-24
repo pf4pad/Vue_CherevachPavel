@@ -8,6 +8,12 @@
 Vue.createApp({
   data() {
     return {
+      tabs: ["All",
+        "Trending",
+        "Featured",
+        "Genres",
+        "Workout",
+        "Most Played"],
       content: [
         {
           id: 0,
@@ -48,10 +54,13 @@ Vue.createApp({
       ]
     }
   },
-  computed: {
-
-  },
   methods: {
-
+    getElements() {
+      this.content = this.content.filter(card => {
+        card.category === this.tabs.tab;
+      })
+    }
+  },
+  computed: {
   }
 }).mount(".homework2");
