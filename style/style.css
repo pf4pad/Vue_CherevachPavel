@@ -61,6 +61,10 @@ input::-webkit-inner-spin-button {
   display: none;
 }
 
+.nav {
+  margin-bottom: 20px;
+
+}
 
 .visually-hidden {
   position: fixed;
@@ -180,6 +184,12 @@ header {
   justify-content: space-around;
   padding: 10px;
   font-size: 25px;
+}
+
+.card-text,
+.card-title {
+  color: #201D38;
+
 }
 
 @media (max-width: 968px) {
