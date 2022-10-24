@@ -165,9 +165,14 @@ header {
 .d-flex {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
+
+.text {
+  width: 40%;
+}
+
 
 .list__show-item {
   display: flex;
