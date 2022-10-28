@@ -8,12 +8,16 @@
 Vue.createApp({
   data() {
     return {
-      tabs: ["All",
-        "Trending",
-        "Featured",
-        "Genres",
-        "Workout",
-        "Most Played"],
+      tabs: [
+        { message: "All" },
+        { message: "Trending" },
+        { message: "Featured" },
+        { message: "Genres" },
+        { message: "Workout" },
+        { message: "Most Played" }
+
+      ],
+
       content: [
         {
           id: 0,
@@ -51,14 +55,28 @@ Vue.createApp({
           artist: "Katy Perry",
           category: ["Most Played", "New Releases"],
         },
-      ]
+      ],
+
     }
   },
   methods: {
-    getElements() {
-      this.content = this.content.filter(card => {
-        card.category === this.tabs.tab;
-      })
+    getElement(tab) {
+      console.log(tab.message);
+      // this.content = this.content.map(elem => elem = elem.category.includes(tab.message));
+      console.log(this.content)
+      if (tab.message === 'All') {
+        this.content = this.content
+      }
+      this.content = this.content.filter(elem => tab.message != "All" ? elem.category.includes(tab.message) : elem)
+      if (tab.message === 'All') {
+        this.content = this.content
+      }
+
+    }
+  },
+  watch: {
+    tab() {
+      this.getElement()
     }
   },
   computed: {

@@ -16,9 +16,10 @@
   <div class="container">
     <div class="homework2">
       <ul class="nav nav-pills">
-        <li class="nav-item" v-for="tab in tabs">
-          <a class="nav-link" href="#" @click="getElements">{{tab}}</a>
+        <li class="nav-item" v-for="tab in tabs" :key="tab.message" @click="getElement(tab)">
+          <a class="nav-link" href="#">{{tab.message}}</a>
         </li>
+
 
       </ul>
       <ul class="d-flex">
