@@ -1,0 +1,82 @@
+<form class="form" v-if="formInvitation">
+
+  <ul class="list">
+    <li class="list-item">
+
+      <label class="label d-flex">
+        <span class="text">Email</span>
+        <span class="text">{{formData.email}}</span>
+      </label>
+    </li>
+    <li class="list-item">
+      <label class="label d-flex">
+        <span class="text">Phone</span>
+        <span class="text">{{formData.phone}}</span>
+      </label>
+    </li>
+    <li class="list-item">
+      <label class="label d-flex">
+        <span class="text">Full Name</span>
+        <span class="text">{{fullName}}</span>
+      </label>
+    </li>
+    <li class="list-item" v-for="guest, index in guests">
+      <label class="label d-flex">
+        <span class="text">Guests{{index+1}} </span>
+        <span class="text">{{guest}}</span>
+      </label>
+
+    </li>
+
+  </ul>
+</form>
+<form class="form" v-else>
+
+  <ul class="list">
+    <li class="list-item">
+      <label class="label">
+        <span class="text">Email</span>
+      </label>
+      <input class="input" type="text" v-model="formData.email">
+    </li>
+    <li class="list-item">
+      <label class="label">
+        <span class="text">Phone</span>
+      </label>
+      <input class="input" type="text" v-model="formData.phone">
+    </li>
+    <li class="list-item">
+      <label class="label">
+        <span class="text">First Name</span>
+      </label>
+      <input class="input" type="text" v-model="formData.firstName">
+    </li>
+    <li class="list-item">
+      <label class="label">
+        <span class="text">Last Name</span>
+      </label>
+      <input class="input" type="text" v-model="formData.lastName">
+    </li>
+  </ul>
+
+  <button type="button" class="guests" @click="addNewGuest">Guests+</button>
+  <ul class="list" v-if="guests.length !== 0 ">
+    <li class="list-item" v-for="guest, index in guests">
+      <label class="label">
+        <span class="text" @dblclick="removeGuest(index)">Guest {{index+1}}</span>
+        <input class="input" type="text" v-model="guests[index]">
+      </label>
+    </li>
+  </ul>
+  <div v-else> Add Guest</div>
+
+
+  <button class="btn-success" type="button" @click="getInvitation" :disabled="!formReady">{{btnText}}</button>
+</form>
+
+
+
+</div>
+</div>
+
+</div>

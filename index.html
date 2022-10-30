@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/normalize.css">
+  <link rel="stylesheet" href="style/bootstrap.min.css">
+  <link rel="stylesheet" href="style/style.css">
+
+  <title>Vue_Homework#1</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="homework2">
+      <ul class="nav nav-pills">
+        <li class="nav-item" v-for="tab in tabs" :key="tab.message" @click="getElement(tab)">
+          <a class="nav-link" href="#">{{tab.message}}</a>
+        </li>
+
+
+      </ul>
+      <ul class="d-flex">
+        <li v-for="card in content" key="card.id">
+          <div class="card" style="width: 15rem;">
+            <p class="card-text" v-for="item in card.category">{{item}}
+            </p>
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{card.title}}</h5>
+              <p class="card-text">{{card.artist}}
+
+              </p>
+
+            </div>
+          </div>
+        </li>
+      </ul>
+
+
+    </div>
+
+  </div>
+  </div>
+
+  <script src="vue.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
