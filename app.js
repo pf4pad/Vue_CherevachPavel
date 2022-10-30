@@ -69,6 +69,7 @@ Vue.createApp({
 
 
       this.content = this.content.filter(elem => tab.message !== "All" ? elem.category.includes(tab.message) : document.location.reload())
+
     }
   },
   watch: {
