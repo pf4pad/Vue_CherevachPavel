@@ -62,16 +62,13 @@ Vue.createApp({
   methods: {
     getElement(tab) {
       console.log(tab.message);
+
       // this.content = this.content.map(elem => elem = elem.category.includes(tab.message));
       console.log(this.content)
-      if (tab.message === 'All') {
-        this.content = this.content
-      }
-      this.content = this.content.filter(elem => tab.message != "All" ? elem.category.includes(tab.message) : elem)
-      if (tab.message === 'All') {
-        this.content = this.content
-      }
+      this.content = this.content
 
+
+      this.content = this.content.filter(elem => tab.message !== "All" ? elem.category.includes(tab.message) : document.location.reload())
     }
   },
   watch: {
