@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="css/styles2.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="wrapper__btns">
+      <button class="wrapper__btn btn" @click="changeTab(null)">all</button>
+      <button class="wrapper__btn btn" v-for="item in tabs" :key="item" @click="changeTab(item)">{{item}}</button>
+    </div>
+    <div class="wrapper__content">
+      <ul class="wrapper__list">
+        <li class="wrapper__item" v-for="item in cardsFiltered" :key="item.id">
+          <ul class="wrapper__category">
+            <li v-for="category in item.category"># {{category}}</li>
+          </ul>
+          <div class="wrapper__photo">
+            <img :src="item.src" alt="" />
+          </div>
+          <h2 class="wrapper__head">{{item.artist}}</h2>
+          <p class="wrapper__song">{{item.title}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <script src="js/vue.js"></script>
+  <script>
+    Vue.createApp({
+      data: () => ({
+        cards: [
+          {
+            id: 0,
+            title: "Judas",
+            artist: "Lady Gaga",
+            category: ["Trending"],
+            src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Lady_Gaga_-_2019_SAG_Awards.jpg/640px-Lady_Gaga_-_2019_SAG_Awards.jpg",
+          },
+          {
+            id: 1,
+            title: "Paparazzi",
+            artist: "Lady Gaga",
+            category: ["Featured", "Genres"],
+            src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Lady_Gaga_-_2019_SAG_Awards.jpg/640px-Lady_Gaga_-_2019_SAG_Awards.jpg",
+          },
+          {
+            id: 2,
+            title: "Just Dance",
+            artist: "Lady Gaga",
+            category: ["Featured", "Trending"],
+            src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Lady_Gaga_-_2019_SAG_Awards.jpg/640px-Lady_Gaga_-_2019_SAG_Awards.jpg",
+          },
+          {
+            id: 3,
+            title: "Meet Me Halfway",
+            artist: "The Black Eye Peace",
+            category: ["Workout"],
+            src: "https://studiosol-a.akamaihd.net/uploadfile/letras/fotos/f/c/a/a/fcaa912167dfaca6837868f485dbd609.jpg",
+          },
+          {
+            id: 4,
+            title: "Can't Hold Us",
+            artist: "Macklemore & Ryan Lewis",
+            category: ["Most Played", "Trending"],
+            src: "https://cdns-images.dzcdn.net/images/artist/7b626fd854d98dc1d98b7062ff8b4b0b/500x500.jpg",
+          },
+          {
+            id: 5,
+            title: "Dark Horse",
+            artist: "Katy Perry",
+            category: ["Most Played", "New Releases"],
+            src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Katy_Perry_2019_by_Glenn_Francis.jpg/640px-Katy_Perry_2019_by_Glenn_Francis.jpg",
+          },
+          {
+            id: 6,
+            title: "Афган",
+            artist: "Макс Корж",
+            category: ["Trending"],
+            src: "https://i.scdn.co/image/ab6761610000e5eb0a540f4c5c943467314014f8",
+          },
+          {
+            id: 7,
+            title: "Колибри",
+            artist: "Miyagi",
+            category: ["Trending", "Most Played", "New Releases"],
+            src: "https://outstyle.org/images/news/8/4/7/32e182240cd7.jpg",
+          },
+          {
+            id: 8,
+            title: "King Kong",
+            artist: "Andy Panda",
+            category: ["Trending", "Most Played", "New Releases"],
+            src: "https://i.pinimg.com/originals/80/40/c7/8040c78ab2b525ace17bc6caad96d7b3.jpg",
+          },
+        ],
+        tabs: [],
+        activeTab: null
+      }),
+      computed: {
+        cardsFiltered() {
+          return this.cards.filter(item => {
+            return !this.activeTab || item.category.includes(this.activeTab)
+          })
+        }
+      },
+      created() {
+        this.cards.forEach(element => {
+          element.category.forEach(item => {
+            if (!this.tabs.includes(item)) {
+              this.tabs.push(item)
+            }
+          })
+        });
+      },
+      methods: {
+        changeTab(tab) {
+          this.activeTab = tab;
+        }
+      }
+    }).mount(".wrapper");
+  </script>
+</body>
+
+</html>
